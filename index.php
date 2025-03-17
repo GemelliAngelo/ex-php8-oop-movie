@@ -25,7 +25,7 @@ require_once './db/movies.php';
 <body>
 
     <div class="container">
-        <div class="row g-3 mt-auto justify-content-center align-items-center">
+        <div class="row g-5 my-auto justify-content-center align-items-center">
 
             <?php
                 foreach ($movies as $movie) {
