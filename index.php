@@ -1,3 +1,41 @@
+<?php
+
+class Genre{
+    public $name;
+
+    public function __construct($_name){
+        $this->name = $_name;
+    }
+}
+
+class Movie{
+    public $title;
+    public $director;
+    public $year;
+    public $genre;
+
+    public function __construct($_title, $_director, $_year, Genre $_genre){
+        $this->title = $_title;
+        $this->director = $_director;
+        $this->year = $_year;
+        $this->genre = $_genre;
+    }
+
+    public function getDirector(){
+        return $this->director;
+    }
+}
+
+
+$interstellar = new Movie('Interstellar', 'Christopher Nolan', 2014, new Genre('Sci-Fi'));
+$inception = new Movie('Inception', 'Christopher Nolan', 2010, new Genre('Sci-Fi'));
+
+var_dump($interstellar);
+var_dump($inception);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
