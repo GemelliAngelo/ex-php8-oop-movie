@@ -1,56 +1,12 @@
 <?php
 
-trait HasRating{
-    public $rating;
+require_once './Traits/hasRating.php';
 
-    public function getRating(){
-        return $this->rating;
-    }
+require_once './Models/genre.php';
 
-    public function setRating($_rating){
-        $this->rating = $_rating;
-    }
-}
+require_once './Models/movie.php';
 
-class Genre{
-    public $name;
-
-    public function __construct($_name){
-        $this->name = $_name;
-    }
-}
-
-class Movie{
-
-    use HasRating;
-
-    public $title;
-    public $director;
-    public $year;
-    public $genres=[];
-
-    public function __construct($_title, $_director, $_year, Genre $_genres){
-        $this->title = $_title;
-        $this->director = $_director;
-        $this->year = $_year;
-        $this->genres = $_genres;
-    }
-
-    public function getDirector(){
-        return $this->director;
-    }
-}
-
-
-$interstellar = new Movie('Interstellar', 'Christopher Nolan', 2014, new Genre(['Sci-Fi', 'Drama']));
-$inception = new Movie('Inception', 'Christopher Nolan', 2010, new Genre(['Sci-Fi', 'Action']));
-
-$interstellar->setRating(10);
-$inception->setRating(9);
-
-var_dump($interstellar);
-var_dump($inception);
-
+require_once './db/movies.php';
 
 ?>
 
@@ -67,6 +23,28 @@ var_dump($inception);
 </head>
 
 <body>
+
+    <div class="container">
+        <div class="row g-3 mt-auto justify-content-center align-items-center">
+
+            <?php
+                foreach ($movies as $movie) {
+            ?>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $movie->title; ?></h4>
+                        <h5 class="card-title"><?php echo $movie->director; ?></h5>
+                        <p class="card-text"><?php echo join(",",$movie->genres->name) ?></p>
+                        <p class="card-text text-end"><?php echo $movie->year; ?></p>
+                    </div>
+                </div>
+            </div>
+            <?php
+                }
+            ?>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
