@@ -1,5 +1,17 @@
 <?php
 
+trait HasRating{
+    public $rating;
+
+    public function getRating(){
+        return $this->rating;
+    }
+
+    public function setRating($_rating){
+        $this->rating = $_rating;
+    }
+}
+
 class Genre{
     public $name;
 
@@ -9,6 +21,9 @@ class Genre{
 }
 
 class Movie{
+
+    use HasRating;
+
     public $title;
     public $director;
     public $year;
@@ -29,6 +44,9 @@ class Movie{
 
 $interstellar = new Movie('Interstellar', 'Christopher Nolan', 2014, new Genre(['Sci-Fi', 'Drama']));
 $inception = new Movie('Inception', 'Christopher Nolan', 2010, new Genre(['Sci-Fi', 'Action']));
+
+$interstellar->setRating(10);
+$inception->setRating(9);
 
 var_dump($interstellar);
 var_dump($inception);
