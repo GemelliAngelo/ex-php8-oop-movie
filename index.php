@@ -35,7 +35,7 @@ require_once './db/movies.php';
                     <div class="card-body">
                         <h4 class="card-title"><?php echo $movie->title; ?></h4>
                         <h5 class="card-title"><?php echo $movie->director; ?></h5>
-                        <p class="card-text"><?php echo join(",",$movie->genres->name) ?></p>
+                        <p class="card-text"><?php echo implode(",",$movie->genres->name) ?></p>
                         <p class="card-text text-end"><?php echo $movie->year; ?></p>
                     </div>
                 </div>
